@@ -1,2 +1,399 @@
-# personal-brand-airy-vo
-my eportfolio
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Airy Vo | ePortfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0D1B2A;
+    --slate:      #1E3A5F;
+    --teal:       #2A7F6F;
+    --teal-light: #D6EDE9;
+    --teal-mid:   #5AADA0;
+    --gold:       #B8966B;
+    --gold-light: #F4EEE4;
+    --white:      #FAFAF8;
+    --muted:      #6B6B6B;
+    --border:     #E0DDD8;
+    --heading:    'Cormorant Garamond', Georgia, serif;
+    --body:       'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--body); background: var(--white); color: var(--navy); font-size: 15px; line-height: 1.7; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,250,248,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 60px;
+  }
+  .nav-brand { font-family: var(--heading); font-size: 22px; font-weight: 600; color: var(--navy); letter-spacing: 0.03em; }
+  .nav-links  { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 12px; font-weight: 400; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--navy) 0%, var(--slate) 55%, var(--teal) 100%);
+    display: flex; align-items: center;
+    padding: 7rem 3rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 500px; height: 500px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.05); }
+  .hero::after  { content: ''; position: absolute; bottom: -120px; left: 30%; width: 380px; height: 380px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.04); }
+
+  .hero-inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+
+  .hero-eyebrow { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal-mid); margin-bottom: 1.2rem; border: 1px solid rgba(90,173,160,0.4); padding: 4px 12px; border-radius: 2px; }
+  .hero h1 { font-family: var(--heading); font-size: clamp(48px, 7vw, 80px); font-weight: 300; color: #FAFAF8; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 1.2rem; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-tagline { font-size: 20px; color: rgba(250,250,248,0.68); max-width: 480px; line-height: 1.75; margin-bottom: 2rem; }
+  .hero-cta { display: inline-block; padding: 12px 28px; border: 1px solid rgba(250,250,248,0.35); color: #FAFAF8; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; }
+  .hero-cta:hover { background: rgba(250,250,248,0.1); border-color: rgba(250,250,248,0.7); }
+
+  /* photo placeholder */
+  .hero-photo {
+    aspect-ratio: 3/4;
+    background: linear-gradient(145deg, rgba(90,173,160,0.25), rgba(42,127,111,0.15));
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; color: rgba(255,255,255,0.45); font-size: 12px; text-align: center; letter-spacing: 0.05em;
+  }
+  /* ↓ To add your real headshot, replace .hero-photo div with:
+     <img src="photo.jpg" alt="Airy Vo" style="width:280px; aspect-ratio:3/4; object-fit:cover; border-radius:2px; border:1px solid rgba(255,255,255,0.1);"> */
+  .hero-photo-icon { font-size: 32px; }
+
+  /* ── SHARED SECTION STYLES ── */
+  .section { padding: 5rem 3rem; }
+  .section-inner { max-width: 860px; margin: 0 auto; }
+  .section-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; display: block; }
+  .section-title { font-family: var(--heading); font-size: clamp(30px, 4vw, 44px); font-weight: 300; color: var(--navy); line-height: 1.1; letter-spacing: -0.01em; }
+  .section-title em { font-style: italic; color: var(--teal); }
+  .divider { width: 44px; height: 2px; margin: 0.9rem 0 2.2rem; }
+
+  /* ── 1. PERSONAL BRAND / ABOUT ── */
+  .about-section { background: var(--white); }
+  .brand-quote { font-family: var(--heading); font-size: 21px; font-weight: 400; font-style: italic; color: var(--navy); line-height: 1.55; border-left: 3px solid var(--gold); padding-left: 1.2rem; margin-bottom: 1.8rem; }
+  .about-body { color: var(--muted); line-height: 1.85; font-size: 15px; margin-bottom: 1.2rem; }
+  .traits { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.6rem; }
+  .trait { font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; padding: 5px 13px; background: var(--teal-light); color: var(--teal); border-radius: 2px; }
+
+  /* ── 2. COVER LETTER ── */
+  .coverletter-section { background: var(--gold-light); }
+  .letter-card {
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--white);
+    min-height: 420px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; color: var(--muted); text-align: center; padding: 3rem;
+  }
+  .letter-card::before { content: ''; position: absolute; top: 8px; left: 8px; right: -8px; bottom: -8px; border: 1px solid var(--border); border-radius: 2px; z-index: -1; }
+  .letter-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .letter-name { font-family: var(--heading); font-size: 24px; font-weight: 600; color: var(--navy); }
+  .letter-contact { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.7; }
+  .letter-date { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
+  .letter-body { font-size: 14px; color: #444; line-height: 1.85; }
+  .letter-body p { margin-bottom: 1rem; }
+  .letter-sign { margin-top: 1.5rem; font-family: var(--heading); font-size: 20px; font-style: italic; color: var(--navy); }
+  .letter-note {
+    margin-top: 1.5rem;
+    padding: 10px 14px;
+    background: var(--teal-light);
+    border-radius: 2px;
+    font-size: 12px;
+    color: var(--teal);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── 3. CV ── */
+  .cv-section { background: var(--white); }
+  .cv-embed {
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--gold-light);
+    min-height: 420px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; color: var(--muted); text-align: center; padding: 3rem;
+  }
+  .cv-embed-icon { font-size: 40px; }
+  .cv-embed-title { font-family: var(--heading); font-size: 22px; color: var(--navy); }
+  .cv-embed-sub { font-size: 13px; color: var(--muted); max-width: 380px; line-height: 1.7; }
+  .cv-btn { display: inline-block; margin-top: 0.5rem; padding: 11px 26px; background: var(--navy); color: #fff; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
+  .cv-btn:hover { background: var(--teal); }
+  /* ↓ To embed your actual CV PDF, replace .cv-embed div with:
+     <iframe src="AiryVo_Resume.pdf" width="100%" height="800px" style="border:1px solid var(--border); border-radius:2px;"></iframe> */
+
+  /* ── 4. LINKEDIN ── */
+  .linkedin-section { background: var(--gold-light); }
+  .linkedin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+  .linkedin-screenshot {
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: #EEF3F8;
+    aspect-ratio: 4/3;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; color: #0A66C2; font-size: 13px; text-align: center; padding: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .linkedin-screenshot::before { content: 'in'; position: absolute; top: -20px; right: -20px; font-size: 120px; font-weight: 700; color: rgba(10,102,194,0.06); font-family: sans-serif; }
+  .li-icon { font-size: 36px; }
+  .li-hint { font-size: 12px; color: #0A66C2; line-height: 1.6; }
+  /* ↓ To add your LinkedIn screenshot:
+     Replace .linkedin-screenshot div with:
+     <img src="linkedin-screenshot.png" alt="LinkedIn profile" style="width:100%; border-radius:2px; border:1px solid var(--border);"> */
+  .linkedin-info { display: flex; flex-direction: column; gap: 1rem; }
+  .li-highlight {
+    padding: 1.2rem 1.4rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--white);
+  }
+  .li-highlight-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+  .li-highlight-val { font-size: 14px; color: var(--navy); line-height: 1.6; }
+  .li-link-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: #0A66C2; color: #fff; font-size: 13px; text-decoration: none; border-radius: 2px; font-weight: 500; transition: background 0.2s; width: fit-content; }
+  .li-link-btn:hover { background: #084f9a; }
+
+  /* ── 5. VIDEO INTERVIEW ── */
+  .video-section { background: var(--navy); }
+  .video-section .section-eyebrow { color: var(--teal-mid); }
+  .video-section .section-title { color: #fff; }
+  .video-section .divider { background: var(--gold); }
+  .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+  .video-embed {
+    aspect-ratio: 16/9;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 2px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; color: rgba(255,255,255,0.5); text-align: center; padding: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .video-play { width: 56px; height: 56px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .video-hint { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+  /* ↓ To embed a YouTube/Loom video, replace .video-embed div with:
+     <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" width="100%" style="aspect-ratio:16/9; border-radius:2px; border:none;" allowfullscreen></iframe> */
+  .video-info { display: flex; flex-direction: column; gap: 1rem; }
+  .video-card { padding: 1.2rem 1.4rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; background: rgba(255,255,255,0.04); }
+  .video-card-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-mid); margin-bottom: 6px; }
+  .video-card-val { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.65; }
+
+  /* ── CONTACT ── */
+  .contact-section { background: var(--white); }
+  .contact-inner { max-width: 580px; margin: 0 auto; text-align: center; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 2rem; }
+  .contact-link { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.4rem; border: 1px solid var(--border); border-radius: 2px; text-decoration: none; transition: all 0.2s; }
+  .contact-link:hover { border-color: var(--teal); background: var(--teal-light); }
+  .contact-link-label { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .contact-link-value { font-size: 14px; color: var(--navy); }
+  .contact-link-arrow { color: var(--teal); }
+
+  footer { background: var(--navy); padding: 2rem 3rem; text-align: center; font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; }
+  footer span { color: var(--gold); }
+
+  @media (max-width: 720px) {
+    nav { padding: 0 1.2rem; }
+    .nav-links { display: none; }
+    .section { padding: 3.5rem 1.4rem; }
+    .hero { padding: 5.5rem 1.4rem 3rem; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-photo { display: none; }
+    .linkedin-grid, .video-grid { grid-template-columns: 1fr; }
+    .letter-card { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Airy Vo</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#coverletter">Cover Letter</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#video">Video</a></li>
+    <li><a href="#linkedin">LinkedIn</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+  HERO
+════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">Accounting &amp; Analytics · Sydney, NSW</span>
+      <h1>Airy<br/><em>Vo.</em></h1>
+      <p class="hero-tagline">Accounting undergraduate leveraging analytical skills to deliver financial insights</p>
+      <a href="#about" class="hero-cta">View my portfolio ↓</a>
+    </div>
+    <!-- Replace this div with your headshot <img> — see CSS comment above -->
+  <div class="hero-photo">
+  <img src="https://uploads.onecompiler.io/44nrvhx3f/44nhxtjxk/IMG_9574.jpg" alt="Airy Vo" style="width:120%; aspect-ratio:3/4; object-fit:cover; border-radius:2px; border:1px solid rgba(255,255,255,0.1);" />
+</div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  1. PERSONAL BRAND STATEMENT
+════════════════════════════════════════════════ -->
+<section class="section about-section" id="about">
+  <div class="section-inner">
+    <span class="section-eyebrow">Personal Brand</span>
+    <h2 class="section-title">Proactive by nature, <em>precise</em> by training.</h2>
+    <div class="divider"></div>
+
+    <p class="brand-quote">"I use numbers to tell a story that drives better decisions."</p>
+
+    <p class="about-body">I'm Airy Vo, a dual-degree student at Macquarie University combining Accounting and Statistical Data Science. Currently interning at a local accounting firm, I support end-to-end tax compliance, bookkeeping, and client administration, helping me real-world experience while still completing my degree.</p>
+
+    <p class="about-body">Equipped with strong accounting knowledge and data analytics skills, my objective is to translate complex financial data into meaningful, data-driven insights that support strategic decision-making.</p>
+
+    <p class="about-body">I am <strong>proactive</strong> in seeking opportunities to learn and contribute, <strong>detail-oriented</strong> in everything I produce, and <strong>collaborative</strong> by nature</p>
+
+    <div class="traits">
+      <span class="trait">Proactive</span>
+      <span class="trait">Detail-Oriented</span>
+      <span class="trait">Analytical</span>
+      <span class="trait">Multilingual</span>
+      <span class="trait">Collaborative</span>
+      <span class="trait">Curious</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  2. COVER LETTER
+════════════════════════════════════════════════ -->
+<section class="section coverletter-section" id="coverletter">
+  <div class="section-inner">
+    <span class="section-eyebrow">Cover Letter</span>
+    <h2 class="section-title">My application <em>letter</em>.</h2>
+    <div class="divider"></div>
+
+    <div class="letter-card">
+  <img src="https://uploads.onecompiler.io/44nrvhx3f/44nhxtjxk/Screenshot%202026-05-09%20at%208.57.46%E2%80%AFpm.png" 
+  style="width: 100%; height: auto; display: block; margin: 0 auto;margin-bottom: 1rem;" />
+    <div class="divider"></div>
+<div style="text-align: center; margin-top: 1rem;">
+<a href="https://drive.google.com/file/d/14jU1AC-nv5mM_kD-KTD6zcY_PRoQE9ih/view?usp=sharing" download class="cv-btn" target="_blank" rel="noopener noreferrer">Download Cover Letter (PDF)</a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  3. CV / RESUME
+════════════════════════════════════════════════ -->
+<section class="section cv-section" id="cv">
+  <div class="section-inner">
+    <span class="section-eyebrow">Curriculum Vitae</span>
+    <h2 class="section-title">My <em>résumé</em>.</h2>
+    <div class="divider"></div>
+
+  <div class="cv-embed">
+  <img src="https://uploads.onecompiler.io/44nrvhx3f/44nhxtjxk/Screenshot%202026-05-09%20at%209.24.10%E2%80%AFpm.png" 
+       style="width: 100%; height: auto; display: block; margin: 0 auto; margin-bottom: 1rem;" />
+  <!-- Update href below to your actual CV PDF link (Google Drive, OneDrive, etc.) -->
+  <div style="text-align: center; margin-top: 1rem;">
+  <a href="https://drive.google.com/file/d/1XnpHo8qgA6HCeiw275L6fb37gpPLa11p/view?usp=sharing" download class="cv-btn" target="_blank" rel="noopener noreferrer">Download CV (PDF)</a>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  5. VIDEO INTERVIEW
+════════════════════════════════════════════════ -->
+<section class="section video-section" id="video">
+  <div class="section-inner">
+    <span class="section-eyebrow">Video Introduction</span>
+    <h2 class="section-title">Meet <em>me</em> in person.</h2>
+    <p style="color: var(--gold); font-weight: 500; margin-bottom: 1.5rem;">
+      A time something that wasn't as efficient as I thought it could be and what I did to put it on the right track
+    </p>
+    <div class="video-grid">
+      <iframe src="https://drive.google.com/file/d/15L9ZJMDmwRKElXoUu6DirYFTjpkJQI80/preview?usp=sharing" 
+              width="200%" height=auto style="border:1px solid var(--border); border-radius: 2px; aspect-ratio: 5 / 3;" allow="autoplay" allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+  4. LINKEDIN
+  → Add your LinkedIn screenshot image and update the href link.
+════════════════════════════════════════════════ -->
+<section class="section linkedin-section" id="linkedin">
+  <div class="section-inner">
+    <span class="section-eyebrow">LinkedIn Profile</span>
+    <h2 class="section-title">My professional <em>presence</em>.</h2>
+    <div class="divider"></div>
+ 
+    <div class="linkedin-grid">
+ 
+      <!-- Replace this div with your screenshot <img> — see CSS comment above -->
+<img src="https://uploads.onecompiler.io/44nrvhx3f/44nhxtjxk/Screenshot%202026-05-10%20at%202.23.21%E2%80%AFpm.png" 
+      alt="LinkedIn Profile Screenshot"
+      style="width:200%; height:auto; display:block; border:1px solid var(--border); border-radius:2px; margin-bottom:1.5rem;" />
+
+ 
+  <a class="li-link-btn" href="https://www.linkedin.com/in/airy-vo/" target="_blank">
+    <span style="font-size:18px; font-weight:700; font-family:sans-serif;">in</span>
+    View LinkedIn Profile
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  CONTACT
+════════════════════════════════════════════════ -->
+<section class="section contact-section" id="contact">
+  <div class="contact-inner">
+    <span class="section-eyebrow">Contact</span>
+    <h2 class="section-title">Let's <em>connect</em>.</h2>
+    <div class="divider" style="margin: 0.9rem auto 2rem;"></div>
+    <p style="color: var(--muted); font-size: 14px;">Open to internship extensions, graduate roles, and opportunities in accounting and finance.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:airyvo.05@gmail.com">
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">airyvo.05@gmail.com</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a class="contact-link" href="tel:0433885180">
+        <span class="contact-link-label">Phone</span>
+        <span class="contact-link-value">0433 885 180</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/airy-vo/" target="_blank">
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">https://www.linkedin.com/in/airy-vo/</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a class="contact-link" href="#">
+        <span class="contact-link-label">Location</span>
+        <span class="contact-link-value">Chatswood NSW 2067, Sydney</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <span>Airy Vo</span> · Accounting &amp; Analytics · Macquarie University</p>
+</footer>
+
+</body>
+</html>
